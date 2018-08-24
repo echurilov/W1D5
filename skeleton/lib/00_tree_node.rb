@@ -1,3 +1,4 @@
+require 'byebug'
 class PolyTreeNode
   def initialize(value)
     @value = value
@@ -38,10 +39,16 @@ class PolyTreeNode
   end
   
   def dfs(target_value)
-    return self if self.value == target_value
-    return nil if self.children == nil
+    location = nil
+    return self if @value == target_value
     self.children.each do |child|
-      child.dfs(target_value)
+      break unless location.nil?
+      location = child.dfs(target_value)
     end
+    location
   end
+  
+  def inspect 
+    "node:#{self.object_id}" # value: #{self.value} children: #{self.children}"
+  end 
 end
