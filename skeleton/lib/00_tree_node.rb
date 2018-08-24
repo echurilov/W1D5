@@ -37,7 +37,11 @@ class PolyTreeNode
     end
   end
   
-  # def inspect
-  #   # p "node:{#{}}"
-  # end
+  def dfs(target_value)
+    return self if self.value == target_value
+    return nil if self.children == nil
+    self.children.each do |child|
+      child.dfs(target_value)
+    end
+  end
 end
