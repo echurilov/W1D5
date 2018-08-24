@@ -48,6 +48,15 @@ class PolyTreeNode
     location
   end
   
+  def bfs(target_value, queue = nil)
+    queue ||= []
+    return self if self.value == target_value
+    self.children.each {|child| queue << child}
+    return nil if queue.empty?
+    first = queue.shift
+    first.bfs(target_value, queue)
+  end 
+  
   def inspect 
     "node:#{self.object_id}" # value: #{self.value} children: #{self.children}"
   end 
