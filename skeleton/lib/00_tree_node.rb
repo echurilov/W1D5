@@ -1,4 +1,3 @@
-require 'byebug'
 class PolyTreeNode
   def initialize(value)
     @value = value
@@ -38,26 +37,7 @@ class PolyTreeNode
     end
   end
   
-  def dfs(target_value)
-    location = nil
-    return self if @value == target_value
-    self.children.each do |child|
-      break unless location.nil?
-      location = child.dfs(target_value)
-    end
-    location
-  end
-  
-  def bfs(target_value, queue = nil)
-    queue ||= []
-    return self if self.value == target_value
-    self.children.each {|child| queue << child}
-    return nil if queue.empty?
-    first = queue.shift
-    first.bfs(target_value, queue)
-  end 
-  
-  def inspect 
-    "node:#{self.object_id}" # value: #{self.value} children: #{self.children}"
-  end 
+  # def inspect
+  #   # p "node:{#{}}"
+  # end
 end
